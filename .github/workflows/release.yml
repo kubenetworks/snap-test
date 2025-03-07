@@ -1,0 +1,28 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  snapcraft:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ linux ]
+        arch: [ amd64, arm64]
+    env:
+      SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+
+      - name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v3
+
+      - name: Use Snapcraft
+        run: |
+          snapcraft
+          RELEASE_VERSION=${GITHUB_REF#refs/*/}
+          snapcraft upload --release=stable kubevpn_${RELEASE_VERSION}_${{ matrix.arch }}.snap
