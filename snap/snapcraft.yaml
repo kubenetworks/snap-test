@@ -28,6 +28,7 @@ parts:
     plugin: make
     source: .
     build-packages:
+      - git
       - golang
       - make
     build-environment:
