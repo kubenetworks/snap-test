@@ -22,8 +22,9 @@ jobs:
 
       - name: Use Snapcraft
         run: |
-          snapcraft
           RELEASE_VERSION=${GITHUB_REF#refs/*/}
+          sed -i s#CRAFT_ARCH_BUILD_VERSION#$RELEASE_VERSION#g snap/snapcraft.yaml
+          snapcraft
           snapcraft upload --release=stable kubevpn_${RELEASE_VERSION}_amd64.snap
   snapcraft-arm:
     runs-on: ubuntu-24.04-arm
@@ -41,6 +42,7 @@ jobs:
 
       - name: Use Snapcraft
         run: |
-          snapcraft
           RELEASE_VERSION=${GITHUB_REF#refs/*/}
+          sed -i s#CRAFT_ARCH_BUILD_VERSION#$RELEASE_VERSION#g snap/snapcraft.yaml
+          snapcraft
           snapcraft upload --release=stable kubevpn_${RELEASE_VERSION}_arm64.snap

@@ -1,5 +1,5 @@
 name: kubevpn
-version: 2.3.13
+version: CRAFT_ARCH_BUILD_VERSION
 summary: Cloud Native Dev Environment
 description: KubeVPN offers a Cloud Native Dev Environment that connects to kubernetes cluster network.
 adopt-info: kubevpn
