@@ -7,7 +7,7 @@ on:
 
 jobs:
   snapcraft:
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-24.04
     env:
       SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
     steps:
